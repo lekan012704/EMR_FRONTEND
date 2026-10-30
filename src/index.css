@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --auth-brand: #006837;
+    --auth-brand-hover: #00542c;
+    --auth-page-bg: #f5f8f6;
+    --auth-surface: #ffffff;
+    --auth-ink: #0f172a;
+    --auth-muted: #475569;
+    --auth-border: #cbd5e1;
+    --auth-focus: #006837;
+    --auth-radius-card: 1.5rem;
+    --auth-radius-control: 0.75rem;
+    --auth-title-size: clamp(1.5rem, 1.25rem + 0.8vw, 2rem);
+  }
+  body {
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+.auth-shell {
+  min-height: 100vh;
+  background-color: var(--auth-page-bg);
+  color: var(--auth-ink);
+}
+
+.auth-card {
+  border-radius: var(--auth-radius-card);
+  border: 1px solid color-mix(in srgb, var(--auth-border) 70%, transparent);
+  background: var(--auth-surface);
+  box-shadow: 0 24px 60px -36px rgb(15 23 42 / 0.28);
+}
+
+.auth-brand-mark {
+  background: var(--auth-brand);
+  color: white;
+  border-radius: var(--auth-radius-control);
+}
+
+.auth-brand-wash {
+  border: 1px solid color-mix(in srgb, var(--auth-brand) 14%, white);
+  background: color-mix(in srgb, var(--auth-brand) 6%, white);
+}
+
+.auth-title {
+  color: var(--auth-ink);
+  font-size: var(--auth-title-size);
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.auth-eyebrow {
+  color: var(--auth-brand-hover);
+}
+
+.auth-subtitle {
+  color: var(--auth-muted);
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.auth-footer {
+  border-color: color-mix(in srgb, var(--auth-brand) 10%, white);
+  background: rgb(255 255 255 / 0.72);
+  color: var(--auth-muted);
+}
+
+.auth-control {
+  min-height: 44px;
+  width: 100%;
+  border: 1px solid var(--auth-border);
+  border-radius: var(--auth-radius-control);
+  background: var(--auth-surface);
+  color: var(--auth-ink);
+}
+
+.auth-control::placeholder {
+  color: var(--auth-muted);
+  opacity: 0.9;
+}
+
+.auth-control:focus-visible,
+.auth-link:focus-visible,
+.auth-icon-button:focus-visible,
+.auth-primary-action:focus-visible {
+  outline: 2px solid var(--auth-focus);
+  outline-offset: 2px;
+}
+
+.auth-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--auth-brand-hover);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.auth-icon-button {
+  display: inline-flex;
+  min-height: 44px;
+  min-width: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  color: var(--auth-muted);
+}
+
+.auth-primary-action {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--auth-radius-control);
+  background: var(--auth-brand);
+  color: white;
+  font-weight: 700;
+  transition: background-color 150ms ease, opacity 150ms ease;
+}
+
+.auth-primary-action:hover {
+  background: var(--auth-brand-hover);
+}
+
+.auth-primary-action:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+/* Custom scrollbars for high-density clinical queues */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ECG Waveform Pulse Animation */
+@keyframes ecgPulse {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-ecg {
+  stroke-dasharray: 1000;
+  animation: ecgPulse 3s linear infinite;
+}
+
+/* Glow effects */
+.glow-teal {
+  box-shadow: 0 0 25px -5px rgba(13, 148, 136, 0.35);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Print-optimized styling for bills & medical receipts */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-shadow-none {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+}
